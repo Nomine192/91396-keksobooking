@@ -1,3 +1,5 @@
+'use strict';
+
 var pins = document.querySelectorAll('.pin');
 var dialog = document.querySelector('.dialog');
 var dialogClose = document.querySelector('.dialog__close');
@@ -6,21 +8,21 @@ var noticeForm = document.querySelector('.notice__form');
 // Функция проверки и удаления класса
 
 var pinDelete = function () {
-	var pinActive = document.querySelector('.pin--active');
-	if(pinActive) {
-		pinActive.classList.remove('pin--active');
-	}
+  var pinActive = document.querySelector('.pin--active');
+  if (pinActive) {
+    pinActive.classList.remove('pin--active');
+  }
 };
 
-//Добавляем класс
+// Добавляем класс
 
 var pinAdd = function (pin) {
-	pinDelete();
-	pin.classList.add('pin--active');
-	dialog.style.display = 'block';
+  pinDelete();
+  pin.classList.add('pin--active');
+  dialog.style.display = 'block';
 };
 
-//Добавляем действие по клику
+// Добавляем действие по клику
 
 for (var i = 0; i < pins.length; i++) {
   pins[i].addEventListener('click', function (e) {
@@ -29,13 +31,13 @@ for (var i = 0; i < pins.length; i++) {
 }
 
 var closeDialog = function () {
-	dialog.style.display = 'none';
-	pinDelete();
+  dialog.style.display = 'none';
+  pinDelete();
 };
 
 dialogClose.addEventListener('click', closeDialog);
 
-//Проверяем время заезда и выезда
+// Проверяем время заезда и выезда
 
 var formTime = noticeForm.querySelector('#time');
 var formTimeout = noticeForm.querySelector('#timeout');
@@ -49,7 +51,7 @@ formTimeout.addEventListener('change', function () {
 });
 
 
-//проверяем стоимость за номер
+// проверяем стоимость за номер
 
 
 var formType = noticeForm.querySelector('#type');
@@ -58,7 +60,7 @@ var formCapacity = noticeForm.querySelector('#capacity');
 var formPrice = noticeForm.querySelector('#price');
 
 formType.addEventListener('change', function () {
-	typeRooms();
+  typeRooms();
 });
 
 var typeRooms = function () {
@@ -82,19 +84,19 @@ var typeRooms = function () {
 formCapacity.value = '0';
 
 var roomNumber = function () {
-	if (formRoomNumber.value === '1') {
-		formCapacity.value = '0';
-	} else if (formRoomNumber.value === '2' || formRoomNumber.value === '100') {
-		formCapacity.value = '3';
-	}
+  if (formRoomNumber.value === '1') {
+    formCapacity.value = '0';
+  } else if (formRoomNumber.value === '2' || formRoomNumber.value === '100') {
+    formCapacity.value = '3';
+  }
 };
 
 var roomCapicity = function () {
-	if (formCapacity.value === '0') {
-		formRoomNumber.value = '1';
-	} else if (formCapacity.value === '3') {
-		formRoomNumber.value = '100';
-	}
+  if (formCapacity.value === '0') {
+    formRoomNumber.value = '1';
+  } else if (formCapacity.value === '3') {
+    formRoomNumber.value = '100';
+  }
 };
 
 
