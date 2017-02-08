@@ -81,27 +81,15 @@ var typeRooms = function () {
 
 // Задаем начальные значения и проверяем кол-во гостей в номере
 
-formCapacity.value = '0';
+formCapacity.value = '1';
+formCapacity.value = '1';
 
-var roomNumber = function () {
-  if (formRoomNumber.value === '1') {
-    formCapacity.value = '0';
-  } else if (formRoomNumber.value === '2' || formRoomNumber.value === '100') {
-    formCapacity.value = '3';
-  }
-};
-
-var roomCapicity = function () {
-  if (formCapacity.value === '0') {
-    formRoomNumber.value = '1';
-  } else if (formCapacity.value === '3') {
-    formRoomNumber.value = '100';
-  }
-};
-
-
-formRoomNumber.addEventListener('change', roomNumber);
-formCapacity.addEventListener('change', roomCapicity);
+formRoomNumber.addEventListener('change', function (e) {
+  formCapacity.value = e.target.value;
+});
+formCapacity.addEventListener('change', function (e) {
+  formRoomNumber.value = e.target.value;
+});
 
 var formTitle = noticeForm.querySelector('#title');
 var formAddress = noticeForm.querySelector('#address');
