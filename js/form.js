@@ -58,39 +58,6 @@ var formType = noticeForm.querySelector('#type');
 var formRoomNumber = noticeForm.querySelector('#room_number');
 var formCapacity = noticeForm.querySelector('#capacity');
 var formPrice = noticeForm.querySelector('#price');
-
-formType.addEventListener('change', function () {
-  typeRooms();
-});
-
-var typeRooms = function () {
-  var priceRoomsHotel = formType.selectedIndex;
-  switch (priceRoomsHotel) {
-    case 0:
-      formPrice.min = 1000;
-      break;
-    case 1:
-      formPrice.min = 0;
-      break;
-    case 2:
-      formPrice.min = 10000;
-      break;
-  }
-};
-
-
-// Задаем начальные значения и проверяем кол-во гостей в номере
-
-formCapacity.value = '1';
-formCapacity.value = '1';
-
-formRoomNumber.addEventListener('change', function (e) {
-  formCapacity.value = e.target.value;
-});
-formCapacity.addEventListener('change', function (e) {
-  formRoomNumber.value = e.target.value;
-});
-
 var formTitle = noticeForm.querySelector('#title');
 var formAddress = noticeForm.querySelector('#address');
 
@@ -103,3 +70,19 @@ formPrice.type = 'number';
 formPrice.min = 1000;
 formPrice.max = 1000000;
 formAddress.required = true;
+
+formType.addEventListener('change', function (e) {
+  formPrice.min = formType.value;
+});
+
+// Задаем начальные значения и проверяем кол-во гостей в номере
+
+formRoomNumber.value = '1';
+formCapacity.value = '1';
+
+formRoomNumber.addEventListener('change', function (e) {
+  formCapacity.value = e.target.value;
+});
+formCapacity.addEventListener('change', function (e) {
+  formRoomNumber.value = e.target.value;
+});
