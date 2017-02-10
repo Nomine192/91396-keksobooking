@@ -126,9 +126,9 @@
             <div class="form__element">
               <label for="type">Тип жилья</label>
               <select id="type">
-                <option selected>Квартира</option>
-                <option>Лачуга</option>
-                <option>Дворец</option>
+                <option selected value="1000">Квартира</option>
+                <option value="0">Лачуга</option>
+                <option value="10000">Дворец</option>
               </select>
             </div>
             <div class="form__element">
@@ -140,16 +140,16 @@
             <div class="form__element">
               <label for="room_number">Кол-во комнат</label>
               <select id="room_number">
-                <option selected>1 комната</option>
-                <option>2 комнаты</option>
-                <option>100 комнат</option>
+                <option selected value="1">1 комната</option>
+                <option value="100">2 комнаты</option>
+                <option value="100">100 комнат</option>
               </select>
             </div>
             <div class="form__element">
               <label for="capacity">Количество мест</label>
               <select id="capacity">
-                <option selected>для 3 гостей</option>
-                <option>не для гостей</option>
+                <option value="100">для 3 гостей</option>
+                <option selected  value="1">не для гостей</option>
               </select>
             </div>
           </div>
@@ -255,6 +255,6 @@
     </nav>
   </div>
 </footer>
-
+<script src="js/form.js" type="text/javascript"></script>
 </body>
 </html>
