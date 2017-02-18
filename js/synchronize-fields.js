@@ -1,6 +1,6 @@
 'use strict';
 
-window.synchronizeFields = function (elementValue, anotherValueElement, arrayValue, anotherArrayValue, strNameValue) {
+window.synchronizeFields = (function (elementValue, anotherValueElement, arrayValue, anotherArrayValue, strNameValue) {
   elementValue.addEventListener('change', function () {
     var selectedValue = arrayValue.indexOf(elementValue.value);
     anotherValueElement[strNameValue] = anotherArrayValue[selectedValue];
@@ -9,4 +9,4 @@ window.synchronizeFields = function (elementValue, anotherValueElement, arrayVal
     var anotherSelecteValue = anotherArrayValue.indexOf(anotherValueElement.value);
     elementValue[strNameValue] = arrayValue[anotherSelecteValue];
   });
-};
+});
