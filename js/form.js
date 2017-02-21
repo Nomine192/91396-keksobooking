@@ -10,8 +10,6 @@ var formPrice = noticeForm.querySelector('#price');
 var formTitle = noticeForm.querySelector('#title');
 var formAddress = noticeForm.querySelector('#address');
 
-window.initializePins();
-
 window.synchronizeFields(formTime, formTimeout, ['12', '13', '14'], ['12', '13', '14'], 'value');
 window.synchronizeFields(formTimeout, formTime, ['12', '13', '14'], ['12', '13', '14'], 'value');
 window.synchronizeFields(formType, formPrice, ['1000', '0', '10000'], ['1000', '0', '10000'], 'min');
