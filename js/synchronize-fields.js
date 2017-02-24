@@ -1,14 +1,10 @@
 'use strict';
 
-(function () {
-  window.synchronizeFields = (function (elementValue, anotherValueElement, arrayValue, anotherArrayValue, strNameValue) {
+window.synchronizeFields = (function () {
+  return function (elementValue, anotherValueElement, arrayValue, anotherArrayValue, callback) {
     elementValue.addEventListener('change', function () {
       var selectedValue = arrayValue.indexOf(elementValue.value);
-      anotherValueElement[strNameValue] = anotherArrayValue[selectedValue];
+      callback(anotherValueElement, anotherArrayValue[selectedValue]);
     });
-    anotherValueElement.addEventListener('change', function () {
-      var anotherSelecteValue = anotherArrayValue.indexOf(anotherValueElement.value);
-      elementValue[strNameValue] = arrayValue[anotherSelecteValue];
-    });
-  });
+  };
 })();
