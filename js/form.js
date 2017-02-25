@@ -11,6 +11,7 @@
   var formTitle = noticeForm.querySelector('#title');
   var formAddress = noticeForm.querySelector('#address');
   var tokyoPinMap = document.querySelector('.tokyo__pin-map');
+  window.initializePins.loadData();
 
   var onPinKeyDown = function (e) {
     if (window.utils.isActivate(e)) {
@@ -18,8 +19,9 @@
       window.initializePins.showPin(function () {
         window.initializePins.deleteClass();
         currentPin.classList.add('pin--active');
+        window.utils.changeAria(currentPin);
 
-        window.showCard(function () {
+        window.showCard(currentPin.data, function () {
           window.initializePins.deleteClass();
           currentPin.focus();
         });
@@ -28,15 +30,18 @@
   };
   var activatePin = function (e) {
     var closest = window.utils.getClosestElement(e.target, 'pin', 'tokyo__pin-map');
-    window.showCard(function () {
-      window.initializePins.deleteClass();
-    });
-
-    if (closest) {
-      window.initializePins.showPin(function () {
+    if (closest !== null && !closest.classList.contains('pin__main')) {
+      window.showCard(closest.data, function () {
         window.initializePins.deleteClass();
-        closest.classList.add('pin--active');
+        window.utils.changeAria(closest);
       });
+
+      if (closest) {
+        window.initializePins.showPin(function () {
+          window.initializePins.deleteClass();
+          closest.classList.add('pin--active');
+        });
+      }
     }
   };
 
@@ -55,6 +60,7 @@
   window.synchronizeFields(formType, formPrice, ['1000', '0', '10000'], ['1000', '0', '10000'], syncValueWithMin);
   window.synchronizeFields(formRoomNumber, formCapacity, ['1', '2', '100'], ['0', '3', '3'], syncValues);
   window.synchronizeFields(formCapacity, formRoomNumber, ['0', '3', '3'], ['1', '2', '100'], syncValues);
+
   formTitle.required = true;
   formTitle.minLength = 30;
   formTitle.maxLength = 100;
