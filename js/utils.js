@@ -23,13 +23,13 @@ window.utils = (function () {
     },
 
     // нажата клавиша Enter
-    isActivate: function (evt) {
-      return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
+    isActivate: function (e) {
+      return e.keyCode && e.keyCode === ENTER_KEY_CODE;
     },
 
     // нажата клавиша ESC
-    isDeactivationEvent: function (evt) {
-      return evt.keyCode && evt.keyCode === ESCAPE_KEY_CODE;
+    isDeactivationEvent: function (e) {
+      return e.keyCode && e.keyCode === ESCAPE_KEY_CODE;
     },
   };
 })();

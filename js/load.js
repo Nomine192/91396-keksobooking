@@ -12,11 +12,11 @@ window.load = (function () {
       errorHandler = onError;
     }
 
-    xhr.addEventListener('load', function (evt) {
-      if (evt.target.status >= 400) {
-        errorHandler('Failed to load data. Server returned status: ' + evt.target.status);
-      } else if (evt.target.status >= 200) {
-        onLoad(evt.target.response);
+    xhr.addEventListener('load', function (e) {
+      if (e.target.status >= 400) {
+        errorHandler('Failed to load data. Server returned status: ' + e.target.status);
+      } else if (e.target.status >= 200) {
+        onLoad(e.target.response);
       }
     });
     xhr.addEventListener('error', errorHandler);
