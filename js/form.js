@@ -21,7 +21,7 @@
         currentPin.classList.add('pin--active');
         window.utils.changeAria(currentPin);
 
-        window.showCard(function () {
+        window.showCard(currentPin.data, function () {
           window.initializePins.deleteClass();
           currentPin.focus();
         });
@@ -30,16 +30,18 @@
   };
   var activatePin = function (e) {
     var closest = window.utils.getClosestElement(e.target, 'pin', 'tokyo__pin-map');
-    window.showCard(closest.data, function () {
-      window.initializePins.deleteClass();
-      window.utils.changeAria(closest);
-    });
-
-    if (closest) {
-      window.initializePins.showPin(function () {
+    if (closest !== null && !closest.classList.contains('pin__main')) {
+      window.showCard(closest.data, function () {
         window.initializePins.deleteClass();
-        closest.classList.add('pin--active');
+        window.utils.changeAria(closest);
       });
+
+      if (closest) {
+        window.initializePins.showPin(function () {
+          window.initializePins.deleteClass();
+          closest.classList.add('pin--active');
+        });
+      }
     }
   };
 
