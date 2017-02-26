@@ -19,7 +19,7 @@ window.initializePins = (function () {
   var MAX_PRICE_VALUE = 1000000;
 
   var isInRange = function (field, jsonValue) {
-    return (field.value === ANY_VALUE) || (jsonValue === parseInt(field.value, 10));
+    return (field.value === ANY_VALUE) || (jsonValue === field.value);
   };
 
 
@@ -55,10 +55,10 @@ window.initializePins = (function () {
     return (checkedFeatures.length === 0) || (checkedFeatures.every(checkFeatures));
   };
   var filterApartments = function (item) {
-    return isInRange(filterType, item) &&
+    return isInRange(filterType, item.offer.type) &&
       isInRangePrice(item) &&
-      isInRange(filterRooms, item) &&
-      isInRange(filterGuests, item) &&
+      isInRange(filterRooms, item.offer.rooms.toString()) &&
+      isInRange(filterGuests, item.offer.guests.toString()) &&
       isInRangeFeatures(item);
   };
 
