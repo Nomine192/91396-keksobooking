@@ -54,7 +54,7 @@ window.showCard = (function () {
     tokyoElement.appendChild(dialogClone);
   };
   // фунция закрытия диалога
-  window.closeDialog = function (e) {
+  window.onCloseDialog = function (e) {
     dialogClone.style.display = 'none';
     window.utils.changeAria(disableDialog);
     disableDialog.removeEventListener('keydown', onKeyDown);
@@ -66,7 +66,7 @@ window.showCard = (function () {
 
   var onKeyDown = function (e) {
     if (window.utils.isActivateEvent(e)) {
-      window.closeDialog(e);
+      window.onCloseDialog(e);
     }
   };
 
@@ -74,7 +74,7 @@ window.showCard = (function () {
     openDialog(data);
 
     disableDialog.addEventListener('keydown', onKeyDown);
-    disableDialog.addEventListener('click', window.closeDialog);
+    disableDialog.addEventListener('click', window.onCloseDialog);
 
     onDialogClose = callback;
   };

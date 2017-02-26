@@ -72,15 +72,15 @@ window.initializePins = (function () {
 
 
   var clearMap = function () {
-    window.closeDialog();
+    window.onCloseDialog();
 
     var pins = tokyo.querySelectorAll('.pin');
 
-    pins.forEach(function (item) {
-      if (!item.classList.contains('pin__main')) {
-        tokyo.removeChild(item);
+    for (var i = 0; i < pins.length; i++) {
+      if (!pins[i].classList.contains('pin__main')) {
+        tokyo.removeChild(pins[i]);
       }
-    });
+    }
   };
 
   formFilters.addEventListener('change', function () {
