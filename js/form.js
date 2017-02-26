@@ -54,6 +54,7 @@
 
   var syncValueWithMin = function (element, value) {
     element.min = value;
+    element.placeholder = value;
   };
 
   window.synchronizeFields(formTime, formTimeout, ['12', '13', '14'], ['12', '13', '14'], syncValues);
