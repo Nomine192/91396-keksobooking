@@ -28,7 +28,7 @@
       });
     }
   };
-  var activatePin = function (e) {
+  var onActivatePin = function (e) {
     var closest = window.utils.getClosestElement(e.target, 'pin', 'tokyo__pin-map');
     if (closest !== null && !closest.classList.contains('pin__main')) {
       window.showCard(closest.data, function () {
@@ -46,7 +46,7 @@
   };
 
   tokyoPinMap.addEventListener('keydown', onPinKeyDown);
-  tokyoPinMap.addEventListener('click', activatePin);
+  tokyoPinMap.addEventListener('click', onActivatePin);
 
   var syncValues = function (element, value) {
     element.value = value;
