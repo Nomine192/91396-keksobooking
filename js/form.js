@@ -47,6 +47,7 @@
 
   tokyoPinMap.addEventListener('keydown', onPinKeyDown);
   tokyoPinMap.addEventListener('click', activatePin);
+
   var syncValues = function (element, value) {
     element.value = value;
   };
