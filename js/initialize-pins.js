@@ -19,7 +19,9 @@ window.initializePins = (function () {
   var MAX_PRICE_VALUE = 1000000;
 
   var isInRangeType = function (dataApartment) {
-    return (filterType.value === ANY_VALUE) || (filterType.value === dataApartment.offer.type);
+    return (filterType.value === ANY_VALUE) || (filterType.value === dataApartment.offer.type) &&
+    (filterRooms.value === ANY_VALUE) || (dataApartment.offer.rooms === +filterRooms.value) &&
+    (filterGuests.value === ANY_VALUE) || (dataApartment.offer.guests === +filterGuests.value);
   };
 
 
@@ -35,13 +37,6 @@ window.initializePins = (function () {
     return false;
   };
 
-  var isInRangeRooms = function (dataApartment) {
-    return (filterRooms.value === ANY_VALUE) || (dataApartment.offer.rooms === +filterRooms.value);
-  };
-
-  var isInRangeGuests = function (dataApartment) {
-    return (filterGuests.value === ANY_VALUE) || (dataApartment.offer.guests === +filterGuests.value);
-  };
 
   var isInRangeFeatures = function (dataApartment) {
 
@@ -65,8 +60,6 @@ window.initializePins = (function () {
   var filterApartments = function (item) {
     return isInRangeType(item) &&
       isInRangePrice(item) &&
-      isInRangeRooms(item) &&
-      isInRangeGuests(item) &&
       isInRangeFeatures(item);
   };
 
