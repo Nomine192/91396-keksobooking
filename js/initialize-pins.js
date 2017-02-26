@@ -15,13 +15,11 @@ window.initializePins = (function () {
   var filterFeatures = filtersContainer.querySelectorAll('input[type=checkbox]');
 
   var ANY_VALUE = 'any';
-  var MIN_PRICE_VALUE = 1000;
+  var MIN_PRICE_VALUE = 10000;
   var MAX_PRICE_VALUE = 1000000;
 
-  var isInRangeType = function (dataApartment) {
-    return (filterType.value === ANY_VALUE) || (filterType.value === dataApartment.offer.type) &&
-    (filterRooms.value === ANY_VALUE) || (dataApartment.offer.rooms === +filterRooms.value) &&
-    (filterGuests.value === ANY_VALUE) || (dataApartment.offer.guests === +filterGuests.value);
+  var isInRange = function (field, jsonValue) {
+    return (field.value === ANY_VALUE) || (jsonValue === parseInt(field.value, 10));
   };
 
 
@@ -30,13 +28,12 @@ window.initializePins = (function () {
       case 'low':
         return item.offer.price < MIN_PRICE_VALUE;
       case 'middle':
-        return item.offer.price >= 1000 && item.offer.price <= MAX_PRICE_VALUE;
+        return item.offer.price >= MIN_PRICE_VALUE && item.offer.price <= MAX_PRICE_VALUE;
       case 'hight':
         return item.offer.price > MAX_PRICE_VALUE;
     }
     return false;
   };
-
 
   var isInRangeFeatures = function (dataApartment) {
 
@@ -58,8 +55,10 @@ window.initializePins = (function () {
     return (checkedFeatures.length === 0) || (checkedFeatures.every(checkFeatures));
   };
   var filterApartments = function (item) {
-    return isInRangeType(item) &&
+    return isInRange(filterType, item) &&
       isInRangePrice(item) &&
+      isInRange(filterRooms, item) &&
+      isInRange(filterGuests, item) &&
       isInRangeFeatures(item);
   };
 
