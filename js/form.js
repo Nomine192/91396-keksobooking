@@ -17,9 +17,10 @@
     if (window.utils.isActivate(e)) {
       var currentPin = e.target;
       window.initializePins.showPin(function () {
-        window.initializePins.deleteClass();
-        currentPin.classList.add('pin--active');
-        window.utils.changeAria(currentPin);
+        if (currentPin !== null && !currentPin.classList.contains('pin--active')) {
+          currentPin.classList.add('pin--active');
+          window.utils.changeAria(currentPin);
+        }
 
         window.showCard(currentPin.data, function () {
           window.initializePins.deleteClass();
@@ -31,17 +32,16 @@
   var onActivatePin = function (e) {
     var closest = window.utils.getClosestElement(e.target, 'pin', 'tokyo__pin-map');
     if (closest !== null && !closest.classList.contains('pin__main')) {
+      window.initializePins.showPin(function () {
+        window.initializePins.deleteClass();
+        if (closest !== null && !closest.classList.contains('pin--active')) {
+          closest.classList.add('pin--active');
+          window.utils.changeAria(closest);
+        }
+      });
       window.showCard(closest.data, function () {
         window.initializePins.deleteClass();
-        window.utils.changeAria(closest);
       });
-
-      if (closest) {
-        window.initializePins.showPin(function () {
-          window.initializePins.deleteClass();
-          closest.classList.add('pin--active');
-        });
-      }
     }
   };
 

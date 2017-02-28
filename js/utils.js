@@ -3,7 +3,6 @@
 window.utils = (function () {
 
   var ENTER_KEY_CODE = 13;
-  var ESCAPE_KEY_CODE = 27;
 
   return {
     // поиск ближайшего элемента с селектором
@@ -16,20 +15,18 @@ window.utils = (function () {
 
     // смена свойства нажатой кнопки
     changeAria: function (element) {
-      var pressed = (element.getAttribute('aria-pressed') === 'true');
-      if (!pressed) {
-        element.setAttribute('aria-pressed', !pressed);
+      var tokyoMap = document.querySelector('.tokyo__pin-map');
+      var pin = tokyoMap.querySelector('.pin[aria-pressed=true]');
+      if (pin !== null) {
+        pin.setAttribute('aria-pressed', 'false');
       }
+      var pressed = !(element.getAttribute('aria-pressed') === 'true');
+      element.setAttribute('aria-pressed', pressed.toString());
     },
 
     // нажата клавиша Enter
     isActivate: function (e) {
       return e.keyCode && e.keyCode === ENTER_KEY_CODE;
-    },
-
-    // нажата клавиша ESC
-    isDeactivationEvent: function (e) {
-      return e.keyCode && e.keyCode === ESCAPE_KEY_CODE;
-    },
+    }
   };
 })();

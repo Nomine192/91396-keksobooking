@@ -65,7 +65,7 @@ window.showCard = (function () {
   };
 
   var onKeyDown = function (e) {
-    if (window.utils.isActivateEvent(e)) {
+    if (window.utils.isActivate(e)) {
       window.onCloseDialog(e);
     }
   };
